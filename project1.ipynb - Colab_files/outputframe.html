@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<!-- saved from url=(0124)https://6q7dlexuaz8-496ff2e9c6d22116-0-colab.googleusercontent.com/outputframe.html?vrz=colab_20240507-060112_RC00_631366301 -->
+<html theme="dark" editor="Default Dark" style="overflow-y: auto;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+  // Avoid arrow function syntax to stay ES5 compatible for the sake of googlebot.
+  window.addEventListener("message", function (message) {
+    if (message.source != window.parent) {
+      return;
+    }
+    if (message.data.sandboxed_iframe_evaluation) {
+      // Message is available in scope so evaluated script can get params from
+      // it.
+      window.currentMessage = message;
+      eval.call(null, message.data.sandboxed_iframe_evaluation);
+      delete window.currentMessage;
+    }
+  });
+</script>
+<style>html{--google-orange-600:#e8710a;--google-yellow-600:#f9ab00;--paper-amber-50:#fff8e1;--paper-amber-400:#ffca28;--paper-blue-300:#64b5f6;--paper-blue-400:#42a5f5;--paper-blue-700:#1976d2;--paper-blue-900:#0d47a1;--paper-orange-300:#ffb74d;--paper-orange-400:#ffa726;--paper-orange-500:#ff9800;--paper-orange-700:#f57c00;--paper-grey-50:#fafafa;--paper-grey-100:#f5f5f5;--paper-grey-200:#eeeeee;--paper-grey-300:#e0e0e0;--paper-grey-400:#bdbdbd;--paper-grey-500:#9e9e9e;--paper-grey-600:#757575;--paper-grey-700:#616161;--paper-grey-800:#424242;--paper-grey-900:#212121;--paper-red-100:#ffcdd2;--paper-red-900:#b71c1c;--paper-red-a700:#d50000;--paper-deep-orange-a100:#ff9e80;--paper-white:#ffffff;--google-blue-600:#1a73e8;--box-shadow-elevation-2dp:0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);--box-shadow-elevation-3dp:0 3px 4px 0 rgba(0,0,0,0.14),0 1px 8px 0 rgba(0,0,0,0.12),0 3px 3px -2px rgba(0,0,0,0.4);--md-icon-font:"Google Symbols";--mdc-icon-font:"Google Symbols"}html{--colab-dialog-bg-z-index:1001;--colab-dialog-z-index:1002;--colab-anchor-color:#00e;--colab-callout-color:var(--paper-blue-700);--colab-primary-text-color:var(--paper-grey-900);--colab-primary-surface-color:var(--paper-white);--colab-secondary-surface-color:#f7f7f7;--colab-highlighted-surface-color:var(--paper-grey-200);--colab-border-color:#dadada;--colab-bold-border-color:#111;--colab-icon-color:#616161;--colab-comment-anchor-color:var(--paper-blue-300);--ansi-black:rgb(0,0,0);--ansi-red:rgb(139,0,0);--ansi-green:rgb(0,100,0);--ansi-yellow:rgb(205,205,0);--ansi-blue:rgb(0,0,238);--ansi-magenta:rgb(205,0,205);--ansi-cyan:rgb(70,130,180);--ansi-gray:rgb(229,229,229);--ansi-bright-black:rgb(127,127,127);--ansi-bright-red:rgb(255,0,0);--ansi-bright-green:rgb(0,208,0);--ansi-bright-yellow:rgb(255,255,0);--ansi-bright-blue:rgb(92,92,255);--ansi-bright-magenta:rgb(255,0,255);--ansi-bright-cyan:rgb(0,255,255);--ansi-bright-gray:rgb(255,255,255);--colab-code-font-family:monospace;--colab-chrome-font-family:"Roboto","Noto",sans-serif;--colab-chrome-font-size:14px;--colab-comment-highlight-color:#ffe082}html[theme=dark]{--colab-anchor-color:var(--paper-blue-300);--colab-callout-color:var(--paper-blue-900);--colab-primary-text-color:#d5d5d5;--colab-primary-surface-color:#383838;--colab-secondary-surface-color:#454545;--colab-highlighted-surface-color:#525252;--colab-border-color:var(--paper-grey-700);--colab-bold-border-color:#eee;--colab-icon-color:#bdbdbd;--ansi-black:rgb(63,63,63);--ansi-red:rgb(255,122,136);--ansi-green:rgb(87,187,138);--ansi-yellow:rgb(255,255,102);--ansi-blue:rgb(130,177,255);--ansi-magenta:rgb(205,0,205);--ansi-cyan:rgb(153,187,215);--ansi-gray:rgb(229,229,229);--ansi-bright-green:rgb(0,255,0);--gcp-success-icon-color:#81c995;--colab-comment-anchor-color:var(--google-blue-600);--colab-comment-highlight-color:#1a237e}html[editor="High Contrast Dark"]{--code-cell-background:#000;--colab-editor-focus-color:#f38518;--colab-editor-focus-border-thickness:1px}html[editor=Monokai]{--code-cell-background:#272822}html[editor="All Hallows Eve"]{--code-cell-background:#000}html[editor="Amy"]{--code-cell-background:#200020}html[editor="Birds Of Paradise"]{--code-cell-background:#372725}html[editor="Blackboard"]{--code-cell-background:#0c1021}html[editor="Clouds Midnight"]{--code-cell-background:#191919}html[editor="Dominion Day"]{--code-cell-background:#372725}html[editor="Espresso Libre"]{--code-cell-background:#2a211c}html[editor="Merbivore"]{--code-cell-background:#161616}html[editor="Night Owl"]{--code-cell-background:#011627}html[editor="Oceanic Next"]{--code-cell-background:#1b2b34}html[editor="Pastels On Dark"]{--code-cell-background:#211e1e}html[editor="Space Cadet"]{--code-cell-background:#0d0d0d}html[editor="Sunburst"]{--code-cell-background:#000}html[editor="Twilight"]{--code-cell-background:#141414}html[editor="Vibrant Ink"]{--code-cell-background:#000}html[editor="Zenburnesque"]{--code-cell-background:#404040}html[editor="Idle Fingers"]{--code-cell-background:#323232}html[editor="Mono Industrial"]{--code-cell-background:#222c28}html[editor=Synthwave84]{--colab-anchor-color:#f97e72;--colab-primary-surface-color:#241b2f;--colab-secondary-surface-color:#49549539;--colab-highlighted-surface-color:#372d4b;--colab-border-color:#34294fb3;--ansi-red:#fe4450;--ansi-green:#72f1b8;--ansi-yellow:#f97e72;--ansi-blue:#03edf9;--ansi-magenta:#ff7edb;--ansi-cyan:#03edf9;--ansi-bright-red:#fe4450;--ansi-bright-green:#72f1b8;--ansi-bright-yellow:#fede5d;--ansi-bright-blue:#03edf9;--ansi-bright-magenta:#ff7edb;--ansi-bright-cyan:#03edf9}html{overflow-y:hidden}body{background:var(--colab-primary-surface-color);color:var(--colab-primary-text-color);font-family:var(--colab-chrome-font-family);font-size:var(--colab-chrome-font-size);line-height:1.24;font-weight:400;padding:7px 0 10px 5px;margin:0}h1,h2,h3,h4,h5,h6{color:var(--colab-primary-text-color);font-family:var(--colab-chrome-font-family);font-weight:700;margin-bottom:4px}p,ul{margin-bottom:6px;margin-top:6px}pre{margin-bottom:0;margin-top:0}a{color:var(--colab-anchor-color)}div.stream,div.output_text,div.output_text pre{display:inline}.execute_result>pre{display:block}div.output_latex,div.output_markdown{max-width:1016px}.output_markdown table,table.dataframe{border-collapse:collapse;border-spacing:0;border:none;table-layout:fixed}.output_markdown table thead,table.dataframe thead{border-bottom:1px solid var(--colab-border-color);font-family:var(--colab-code-font-family);text-align:right}.output_markdown table tr,.output_markdown table th,.output_markdown table td,table.dataframe tr,table.dataframe th,table.dataframe td{border:none;padding:.5em;white-space:normal}.output_markdown table th,table.dataframe th{font-weight:bold}.output_markdown table th.col_heading,table.dataframe th.col_heading{text-align:right}.output_markdown table tbody tr:nth-child(odd),table.dataframe tbody tr:nth-child(odd){background:var(--colab-secondary-surface-color)}.output_markdown table tbody tr:hover,table.dataframe tbody tr:hover,.output_markdown table tbody tr:nth-child(odd):hover,table.dataframe tbody tr:nth-child(odd):hover{background-color:var(--colab-highlighted-surface-color)}.output_markdown table td,table.dataframe td{text-align:right}table.dataTable input.text_filter{width:95%}.output_markdown table th,table.dataTable th{text-align:left}.output_image>img{background-color:white;max-width:100%;vertical-align:bottom}.output_image>img.unconstrained{max-width:unset}.ansibold{font-weight:bold}.ansiblack{color:black}.ansired{color:darkred}.ansigreen{color:darkgreen}.ansiyellow{color:brown}.ansiblue{color:darkblue}.ansipurple{color:darkviolet}.ansicyan{color:steelblue}.ansigray{color:gray}.ansibgblack{background-color:black}.ansibgred{background-color:red}.ansibggreen{background-color:green}.ansibgyellow{background-color:yellow}.ansibgblue{background-color:blue}.ansibgpurple{background-color:magenta}.ansibgcyan{background-color:cyan}.ansibggray{background-color:gray}.output-error span{font-weight:normal!important}.output-error pre{white-space:pre-wrap}.display_data .output_text pre,.execute_result .output_text pre{white-space:pre-wrap}input.raw_input{font-family:var(--colab-code-font-family);width:90%}input{background:var(--colab-primary-surface-color);border:1px solid var(--colab-bold-border-color);color:var(--colab-primary-text-color)}#output-area{display:flow-root}#output-area button.colab{background-color:var(--colab-secondary-surface-color);border:0;-webkit-box-shadow:var(--box-shadow-elevation-3dp);box-shadow:var(--box-shadow-elevation-3dp);color:var(--colab-primary-text-color);font-family:var(--colab-chrome-font-family);font-size:11px;margin:0 4px 10px 4px;padding:6px;text-transform:uppercase;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}#output-area button.colab:hover{background-color:var(--colab-highlighted-surface-color);cursor:pointer}#output-area .output-error button.error-details{background-color:#42A5F5;color:white}#output-area .output-error button.error-details:hover{background-color:#2196F3}#output-area .stdin-widget{-webkit-box-align:center;-webkit-align-items:center;align-items:center;display:inline;font-family:var(--colab-code-font-family);margin-right:10px;margin-top:10px;min-width:250px;padding:1px}#output-area .stdin-widget-hidden{visibility:hidden}.error .collapsed .extraneous{display:none}.error .error-expander{-webkit-box-align:center;-webkit-align-items:center;align-items:center;cursor:pointer;display:-webkit-box;display:-webkit-flex;display:flex}.error .error-expander hr{border:0;border-top:1px solid var(--colab-bold-border-color);-webkit-box-flex:1;-webkit-flex-grow:1;flex-grow:1;height:1px;margin:0 10px;padding:0}.error .error-expander hr:first-child{max-width:240px}.error .error-expander svg{fill:var(--colab-icon-color);height:24px;stroke:var(--colab-icon-color);width:24px}.lm-Widget.lm-mod-hidden{display:none!important}audio:focus{outline:none}.string-repr{display:inline}.string-repr .quote{opacity:75%;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.string-repr pre{display:inline;white-space:pre-wrap;word-break:break-all}.string-repr button{color:var(--colab-primary-text-color);cursor:pointer;border:1px solid rgb(118,118,118);border-radius:2px;outline:none}.string-repr button.copy{background:transparent;border:none;margin-left:4px;opacity:0;padding:0;stroke:var(--colab-primary-text-color);-webkit-transition:opacity .2s;transition:opacity .2s}.string-repr button.copy svg{width:14px}.string-repr.hover button.copy,.string-repr:hover button.copy{opacity:1}.string-repr button.more{background-color:transparent;border-color:transparent;display:none;padding:0;-webkit-transition:background-color .2s,border-color .2s;transition:background-color .2s,border-color .2s}.string-repr.large button.more{display:inline}.string-repr.large.truncated button .collapse{display:none}.string-repr.large button .expand{display:none}.string-repr.large.truncated button .expand{display:inline}.string-repr.hover button.more,.string-repr:hover button.more{border-color:rgb(118,118,118)}sentinel{}
+//@ sourceURL=https://ssl.gstatic.com/colaboratory-static/common/3c7944983d550bf43476281924e4eba5/outputframe.css</style><!--<base href="https://localhost:8080/">--><base href="."></head><body data-new-gr-c-s-check-loaded="14.1067.0" data-gr-ext-installed=""><div id="output-area"><span id="output-header"> </span><div id="output-body"><div class="stream"><div class="output_subarea output_text"><pre>Requirement already satisfied: pip in /usr/local/lib/python3.10/dist-packages (23.1.2)
+Collecting pip
+  Downloading pip-24.0-py3-none-any.whl (2.1 MB)
+     <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">2.1/2.1 MB</span><span> </span><span style="color: var(--ansi-red);">10.4 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 23.1.2
+    Uninstalling pip-23.1.2:
+      Successfully uninstalled pip-23.1.2
+Successfully installed pip-24.0
+Requirement already satisfied: setuptools in /usr/local/lib/python3.10/dist-packages (67.7.2)
+Collecting setuptools
+  Using cached setuptools-69.5.1-py3-none-any.whl.metadata (6.2 kB)
+Requirement already satisfied: wheel in /usr/local/lib/python3.10/dist-packages (0.43.0)
+Using cached setuptools-69.5.1-py3-none-any.whl (894 kB)
+Installing collected packages: setuptools
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 67.7.2
+    Uninstalling setuptools-67.7.2:
+      Successfully uninstalled setuptools-67.7.2
+<span style="color: var(--ansi-red);">ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+ipython 7.34.0 requires jedi&gt;=0.16, which is not installed.</span><span style="color: var(--ansi-red);">
+</span><span>Successfully installed setuptools-69.5.1
+</span><span style="color: var(--ansi-yellow);">WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: <a rel="nofollow" target="_blank" href="https://pip.pypa.io/warnings/venv">https://pip.pypa.io/warnings/venv</a></span><span style="color: var(--ansi-yellow);">
+</span></pre></div></div><div class="display_data"></div><div class="stream"><div class="output_subarea output_text"><pre>Collecting mxnet&lt;2.0.0
+  Downloading mxnet-1.9.1-py3-none-manylinux2014_x86_64.whl.metadata (3.4 kB)
+Collecting bokeh==2.0.1
+  Downloading bokeh-2.0.1.tar.gz (8.6 MB)
+     <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">8.6/8.6 MB</span><span> </span><span style="color: var(--ansi-red);">23.8 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>  Preparing metadata (setup.py) ... done
+Requirement already satisfied: PyYAML&gt;=3.10 in /usr/local/lib/python3.10/dist-packages (from bokeh==2.0.1) (6.0.1)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /usr/local/lib/python3.10/dist-packages (from bokeh==2.0.1) (2.8.2)
+Requirement already satisfied: Jinja2&gt;=2.7 in /usr/local/lib/python3.10/dist-packages (from bokeh==2.0.1) (3.1.3)
+Requirement already satisfied: numpy&gt;=1.11.3 in /usr/local/lib/python3.10/dist-packages (from bokeh==2.0.1) (1.25.2)
+Requirement already satisfied: pillow&gt;=4.0 in /usr/local/lib/python3.10/dist-packages (from bokeh==2.0.1) (9.4.0)
+Requirement already satisfied: packaging&gt;=16.8 in /usr/local/lib/python3.10/dist-packages (from bokeh==2.0.1) (24.0)
+Requirement already satisfied: tornado&gt;=5 in /usr/local/lib/python3.10/dist-packages (from bokeh==2.0.1) (6.3.3)
+Requirement already satisfied: typing_extensions&gt;=3.7.4 in /usr/local/lib/python3.10/dist-packages (from bokeh==2.0.1) (4.11.0)
+Requirement already satisfied: requests&lt;3,&gt;=2.20.0 in /usr/local/lib/python3.10/dist-packages (from mxnet&lt;2.0.0) (2.31.0)
+Collecting graphviz&lt;0.9.0,&gt;=0.8.1 (from mxnet&lt;2.0.0)
+  Downloading graphviz-0.8.4-py2.py3-none-any.whl.metadata (6.4 kB)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/local/lib/python3.10/dist-packages (from Jinja2&gt;=2.7-&gt;bokeh==2.0.1) (2.1.5)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-packages (from python-dateutil&gt;=2.1-&gt;bokeh==2.0.1) (1.16.0)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.10/dist-packages (from requests&lt;3,&gt;=2.20.0-&gt;mxnet&lt;2.0.0) (3.3.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests&lt;3,&gt;=2.20.0-&gt;mxnet&lt;2.0.0) (3.7)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests&lt;3,&gt;=2.20.0-&gt;mxnet&lt;2.0.0) (2.0.7)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests&lt;3,&gt;=2.20.0-&gt;mxnet&lt;2.0.0) (2024.2.2)
+Downloading mxnet-1.9.1-py3-none-manylinux2014_x86_64.whl (49.1 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">49.1/49.1 MB</span><span> </span><span style="color: var(--ansi-red);">21.6 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading graphviz-0.8.4-py2.py3-none-any.whl (16 kB)
+Building wheels for collected packages: bokeh
+  Building wheel for bokeh (setup.py) ... done
+  Created wheel for bokeh: filename=bokeh-2.0.1-py3-none-any.whl size=9080016 sha256=c14508892fb1482560ebbdc309b24bec4a4f03d2c744e3fa2ed3565cbd54f508
+  Stored in directory: /root/.cache/pip/wheels/be/b4/d8/7ce778fd6e637bea03a561223a77ba6649aff8168e3c613754
+Successfully built bokeh
+Installing collected packages: graphviz, mxnet, bokeh
+  Attempting uninstall: graphviz
+    Found existing installation: graphviz 0.20.3
+    Uninstalling graphviz-0.20.3:
+      Successfully uninstalled graphviz-0.20.3
+  Attempting uninstall: bokeh
+    Found existing installation: bokeh 3.3.4
+    Uninstalling bokeh-3.3.4:
+      Successfully uninstalled bokeh-3.3.4
+<span style="color: var(--ansi-red);">ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+panel 1.3.8 requires bokeh&lt;3.4.0,&gt;=3.2.0, but you have bokeh 2.0.1 which is incompatible.</span><span style="color: var(--ansi-red);">
+</span><span>Successfully installed bokeh-2.0.1 graphviz-0.8.4 mxnet-1.9.1
+</span><span style="color: var(--ansi-yellow);">WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: <a rel="nofollow" target="_blank" href="https://pip.pypa.io/warnings/venv">https://pip.pypa.io/warnings/venv</a></span><span style="color: var(--ansi-yellow);">
+</span><span>Collecting autogluon
+  Downloading autogluon-1.1.0-py3-none-any.whl.metadata (11 kB)
+Collecting autogluon.core==1.1.0 (from autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading autogluon.core-1.1.0-py3-none-any.whl.metadata (11 kB)
+Collecting autogluon.features==1.1.0 (from autogluon)
+  Downloading autogluon.features-1.1.0-py3-none-any.whl.metadata (11 kB)
+Collecting autogluon.tabular==1.1.0 (from autogluon.tabular[all]==1.1.0-&gt;autogluon)
+  Downloading autogluon.tabular-1.1.0-py3-none-any.whl.metadata (13 kB)
+Collecting autogluon.multimodal==1.1.0 (from autogluon)
+  Downloading autogluon.multimodal-1.1.0-py3-none-any.whl.metadata (12 kB)
+Collecting autogluon.timeseries==1.1.0 (from autogluon.timeseries[all]==1.1.0-&gt;autogluon)
+  Downloading autogluon.timeseries-1.1.0-py3-none-any.whl.metadata (12 kB)
+Requirement already satisfied: numpy&lt;1.29,&gt;=1.21 in /usr/local/lib/python3.10/dist-packages (from autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (1.25.2)
+Requirement already satisfied: scipy&lt;1.13,&gt;=1.5.4 in /usr/local/lib/python3.10/dist-packages (from autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (1.11.4)
+Collecting scikit-learn&lt;1.4.1,&gt;=1.3.0 (from autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading scikit_learn-1.4.0-1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (11 kB)
+Requirement already satisfied: networkx&lt;4,&gt;=3.0 in /usr/local/lib/python3.10/dist-packages (from autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (3.3)
+Requirement already satisfied: pandas&lt;2.3.0,&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (2.0.3)
+Requirement already satisfied: tqdm&lt;5,&gt;=4.38 in /usr/local/lib/python3.10/dist-packages (from autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (4.66.4)
+Requirement already satisfied: requests in /usr/local/lib/python3.10/dist-packages (from autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (2.31.0)
+Requirement already satisfied: matplotlib in /usr/local/lib/python3.10/dist-packages (from autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (3.7.1)
+Collecting boto3&lt;2,&gt;=1.10 (from autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading boto3-1.34.101-py3-none-any.whl.metadata (6.6 kB)
+Collecting autogluon.common==1.1.0 (from autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading autogluon.common-1.1.0-py3-none-any.whl.metadata (11 kB)
+Collecting ray&lt;2.11,&gt;=2.10.0 (from ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading ray-2.10.0-cp310-cp310-manylinux2014_x86_64.whl.metadata (13 kB)
+Requirement already satisfied: hyperopt&lt;0.2.8,&gt;=0.2.7 in /usr/local/lib/python3.10/dist-packages (from autogluon.core[all]==1.1.0-&gt;autogluon) (0.2.7)
+Collecting Pillow&lt;11,&gt;=10.0.1 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading pillow-10.3.0-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (9.2 kB)
+Collecting torch&lt;2.2,&gt;=2.1 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading torch-2.1.2-cp310-cp310-manylinux1_x86_64.whl.metadata (25 kB)
+Collecting lightning&lt;2.2,&gt;=2.1 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading lightning-2.1.4-py3-none-any.whl.metadata (57 kB)
+</span>     <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">57.2/57.2 kB</span><span> </span><span style="color: var(--ansi-red);">20.6 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Collecting transformers&lt;4.39.0,&gt;=4.38.0 (from transformers[sentencepiece]&lt;4.39.0,&gt;=4.38.0-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading transformers-4.38.2-py3-none-any.whl.metadata (130 kB)
+     <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">130.7/130.7 kB</span><span> </span><span style="color: var(--ansi-red);">38.2 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Collecting accelerate&lt;0.22.0,&gt;=0.21.0 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading accelerate-0.21.0-py3-none-any.whl.metadata (17 kB)
+Requirement already satisfied: jsonschema&lt;4.22,&gt;=4.18 in /usr/local/lib/python3.10/dist-packages (from autogluon.multimodal==1.1.0-&gt;autogluon) (4.19.2)
+Collecting seqeval&lt;1.3.0,&gt;=1.2.2 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading seqeval-1.2.2.tar.gz (43 kB)
+     <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">43.6/43.6 kB</span><span> </span><span style="color: var(--ansi-red);">190.4 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>  Preparing metadata (setup.py) ... done
+Collecting evaluate&lt;0.5.0,&gt;=0.4.0 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading evaluate-0.4.2-py3-none-any.whl.metadata (9.3 kB)
+Collecting timm&lt;0.10.0,&gt;=0.9.5 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading timm-0.9.16-py3-none-any.whl.metadata (38 kB)
+Collecting torchvision&lt;0.17.0,&gt;=0.16.0 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading torchvision-0.16.2-cp310-cp310-manylinux1_x86_64.whl.metadata (6.6 kB)
+Requirement already satisfied: scikit-image&lt;0.21.0,&gt;=0.19.1 in /usr/local/lib/python3.10/dist-packages (from autogluon.multimodal==1.1.0-&gt;autogluon) (0.19.3)
+Requirement already satisfied: text-unidecode&lt;1.4,&gt;=1.3 in /usr/local/lib/python3.10/dist-packages (from autogluon.multimodal==1.1.0-&gt;autogluon) (1.3)
+Collecting torchmetrics&lt;1.3.0,&gt;=1.2.0 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading torchmetrics-1.2.1-py3-none-any.whl.metadata (20 kB)
+Collecting nptyping&lt;2.5.0,&gt;=1.4.4 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nptyping-2.4.1-py3-none-any.whl.metadata (7.7 kB)
+Collecting omegaconf&lt;2.3.0,&gt;=2.1.1 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading omegaconf-2.2.3-py3-none-any.whl.metadata (3.9 kB)
+Collecting pytorch-metric-learning&lt;2.4,&gt;=1.3.0 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading pytorch_metric_learning-2.3.0-py3-none-any.whl.metadata (17 kB)
+Collecting nlpaug&lt;1.2.0,&gt;=1.1.10 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nlpaug-1.1.11-py3-none-any.whl.metadata (14 kB)
+Requirement already satisfied: nltk&lt;4.0.0,&gt;=3.4.5 in /usr/local/lib/python3.10/dist-packages (from autogluon.multimodal==1.1.0-&gt;autogluon) (3.8.1)
+Collecting openmim&lt;0.4.0,&gt;=0.3.7 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading openmim-0.3.9-py2.py3-none-any.whl.metadata (16 kB)
+Requirement already satisfied: defusedxml&lt;0.7.2,&gt;=0.7.1 in /usr/local/lib/python3.10/dist-packages (from autogluon.multimodal==1.1.0-&gt;autogluon) (0.7.1)
+Requirement already satisfied: jinja2&lt;3.2,&gt;=3.0.3 in /usr/local/lib/python3.10/dist-packages (from autogluon.multimodal==1.1.0-&gt;autogluon) (3.1.3)
+Requirement already satisfied: tensorboard&lt;3,&gt;=2.9 in /usr/local/lib/python3.10/dist-packages (from autogluon.multimodal==1.1.0-&gt;autogluon) (2.15.2)
+Collecting pytesseract&lt;0.3.11,&gt;=0.3.9 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading pytesseract-0.3.10-py3-none-any.whl.metadata (11 kB)
+Collecting nvidia-ml-py3==7.352.0 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nvidia-ml-py3-7.352.0.tar.gz (19 kB)
+  Preparing metadata (setup.py) ... done
+Collecting pdf2image&lt;1.19,&gt;=1.17.0 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading pdf2image-1.17.0-py3-none-any.whl.metadata (6.2 kB)
+Requirement already satisfied: xgboost&lt;2.1,&gt;=1.6 in /usr/local/lib/python3.10/dist-packages (from autogluon.tabular[all]==1.1.0-&gt;autogluon) (2.0.3)
+Requirement already satisfied: fastai&lt;2.8,&gt;=2.3.1 in /usr/local/lib/python3.10/dist-packages (from autogluon.tabular[all]==1.1.0-&gt;autogluon) (2.7.15)
+Requirement already satisfied: lightgbm&lt;4.4,&gt;=3.3 in /usr/local/lib/python3.10/dist-packages (from autogluon.tabular[all]==1.1.0-&gt;autogluon) (4.1.0)
+Collecting catboost&lt;1.3,&gt;=1.1 (from autogluon.tabular[all]==1.1.0-&gt;autogluon)
+  Downloading catboost-1.2.5-cp310-cp310-manylinux2014_x86_64.whl.metadata (1.2 kB)
+Requirement already satisfied: joblib&lt;2,&gt;=1.1 in /usr/local/lib/python3.10/dist-packages (from autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (1.4.2)
+Collecting pytorch-lightning&lt;2.2,&gt;=2.1 (from autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon)
+  Downloading pytorch_lightning-2.1.4-py3-none-any.whl.metadata (21 kB)
+Collecting gluonts&lt;0.14.4,&gt;=0.14.0 (from autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon)
+  Downloading gluonts-0.14.3-py3-none-any.whl.metadata (9.5 kB)
+Collecting statsforecast&lt;1.5,&gt;=1.4.0 (from autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon)
+  Downloading statsforecast-1.4.0-py3-none-any.whl.metadata (19 kB)
+Collecting mlforecast&lt;0.10.1,&gt;=0.10.0 (from autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon)
+  Downloading mlforecast-0.10.0-py3-none-any.whl.metadata (11 kB)
+Collecting utilsforecast&lt;0.0.11,&gt;=0.0.10 (from autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon)
+  Downloading utilsforecast-0.0.10-py3-none-any.whl.metadata (7.0 kB)
+Collecting orjson~=3.9 (from autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon)
+  Downloading orjson-3.10.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (49 kB)
+     <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">49.7/49.7 kB</span><span> </span><span style="color: var(--ansi-red);">101.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Collecting optimum&lt;1.19,&gt;=1.17 (from optimum[onnxruntime]&lt;1.19,&gt;=1.17; extra == "all"-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon)
+  Downloading optimum-1.18.1-py3-none-any.whl.metadata (18 kB)
+Requirement already satisfied: psutil&lt;6,&gt;=5.7.3 in /usr/local/lib/python3.10/dist-packages (from autogluon.common==1.1.0-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (5.9.5)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.10/dist-packages (from autogluon.common==1.1.0-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (69.5.1)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.10/dist-packages (from accelerate&lt;0.22.0,&gt;=0.21.0-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (24.0)
+Requirement already satisfied: pyyaml in /usr/local/lib/python3.10/dist-packages (from accelerate&lt;0.22.0,&gt;=0.21.0-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (6.0.1)
+Collecting botocore&lt;1.35.0,&gt;=1.34.101 (from boto3&lt;2,&gt;=1.10-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading botocore-1.34.101-py3-none-any.whl.metadata (5.7 kB)
+Collecting jmespath&lt;2.0.0,&gt;=0.7.1 (from boto3&lt;2,&gt;=1.10-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading jmespath-1.0.1-py3-none-any.whl.metadata (7.6 kB)
+Collecting s3transfer&lt;0.11.0,&gt;=0.10.0 (from boto3&lt;2,&gt;=1.10-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading s3transfer-0.10.1-py3-none-any.whl.metadata (1.7 kB)
+Requirement already satisfied: graphviz in /usr/local/lib/python3.10/dist-packages (from catboost&lt;1.3,&gt;=1.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (0.8.4)
+Requirement already satisfied: plotly in /usr/local/lib/python3.10/dist-packages (from catboost&lt;1.3,&gt;=1.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (5.15.0)
+Requirement already satisfied: six in /usr/local/lib/python3.10/dist-packages (from catboost&lt;1.3,&gt;=1.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (1.16.0)
+Collecting datasets&gt;=2.0.0 (from evaluate&lt;0.5.0,&gt;=0.4.0-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading datasets-2.19.1-py3-none-any.whl.metadata (19 kB)
+Collecting dill (from evaluate&lt;0.5.0,&gt;=0.4.0-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading dill-0.3.8-py3-none-any.whl.metadata (10 kB)
+Collecting xxhash (from evaluate&lt;0.5.0,&gt;=0.4.0-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading xxhash-3.4.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (12 kB)
+Collecting multiprocess (from evaluate&lt;0.5.0,&gt;=0.4.0-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading multiprocess-0.70.16-py310-none-any.whl.metadata (7.2 kB)
+Requirement already satisfied: fsspec&gt;=2021.05.0 in /usr/local/lib/python3.10/dist-packages (from fsspec[http]&gt;=2021.05.0-&gt;evaluate&lt;0.5.0,&gt;=0.4.0-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (2023.6.0)
+Requirement already satisfied: huggingface-hub&gt;=0.7.0 in /usr/local/lib/python3.10/dist-packages (from evaluate&lt;0.5.0,&gt;=0.4.0-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (0.20.3)
+Requirement already satisfied: pip in /usr/local/lib/python3.10/dist-packages (from fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (24.0)
+Requirement already satisfied: fastdownload&lt;2,&gt;=0.0.5 in /usr/local/lib/python3.10/dist-packages (from fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (0.0.7)
+Requirement already satisfied: fastcore&lt;1.6,&gt;=1.5.29 in /usr/local/lib/python3.10/dist-packages (from fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (1.5.33)
+Requirement already satisfied: fastprogress&gt;=0.2.4 in /usr/local/lib/python3.10/dist-packages (from fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (1.0.3)
+Requirement already satisfied: spacy&lt;4 in /usr/local/lib/python3.10/dist-packages (from fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (3.7.4)
+Requirement already satisfied: pydantic&lt;3,&gt;=1.7 in /usr/local/lib/python3.10/dist-packages (from gluonts&lt;0.14.4,&gt;=0.14.0-&gt;autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (2.7.1)
+Requirement already satisfied: toolz~=0.10 in /usr/local/lib/python3.10/dist-packages (from gluonts&lt;0.14.4,&gt;=0.14.0-&gt;autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (0.12.1)
+Requirement already satisfied: typing-extensions~=4.0 in /usr/local/lib/python3.10/dist-packages (from gluonts&lt;0.14.4,&gt;=0.14.0-&gt;autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (4.11.0)
+Requirement already satisfied: future in /usr/local/lib/python3.10/dist-packages (from hyperopt&lt;0.2.8,&gt;=0.2.7-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (0.18.3)
+Requirement already satisfied: cloudpickle in /usr/local/lib/python3.10/dist-packages (from hyperopt&lt;0.2.8,&gt;=0.2.7-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (2.2.1)
+Requirement already satisfied: py4j in /usr/local/lib/python3.10/dist-packages (from hyperopt&lt;0.2.8,&gt;=0.2.7-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (0.10.9.7)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/local/lib/python3.10/dist-packages (from jinja2&lt;3.2,&gt;=3.0.3-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (2.1.5)
+Requirement already satisfied: attrs&gt;=22.2.0 in /usr/local/lib/python3.10/dist-packages (from jsonschema&lt;4.22,&gt;=4.18-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (23.2.0)
+Requirement already satisfied: jsonschema-specifications&gt;=2023.03.6 in /usr/local/lib/python3.10/dist-packages (from jsonschema&lt;4.22,&gt;=4.18-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (2023.12.1)
+Requirement already satisfied: referencing&gt;=0.28.4 in /usr/local/lib/python3.10/dist-packages (from jsonschema&lt;4.22,&gt;=4.18-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (0.35.1)
+Requirement already satisfied: rpds-py&gt;=0.7.1 in /usr/local/lib/python3.10/dist-packages (from jsonschema&lt;4.22,&gt;=4.18-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (0.18.0)
+Collecting lightning-utilities&lt;2.0,&gt;=0.8.0 (from lightning&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading lightning_utilities-0.11.2-py3-none-any.whl.metadata (4.7 kB)
+Requirement already satisfied: numba in /usr/local/lib/python3.10/dist-packages (from mlforecast&lt;0.10.1,&gt;=0.10.0-&gt;autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (0.58.1)
+Collecting window-ops (from mlforecast&lt;0.10.1,&gt;=0.10.0-&gt;autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon)
+  Downloading window_ops-0.0.15-py3-none-any.whl.metadata (6.8 kB)
+Requirement already satisfied: gdown&gt;=4.0.0 in /usr/local/lib/python3.10/dist-packages (from nlpaug&lt;1.2.0,&gt;=1.1.10-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (5.1.0)
+Requirement already satisfied: click in /usr/local/lib/python3.10/dist-packages (from nltk&lt;4.0.0,&gt;=3.4.5-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (8.1.7)
+Requirement already satisfied: regex&gt;=2021.8.3 in /usr/local/lib/python3.10/dist-packages (from nltk&lt;4.0.0,&gt;=3.4.5-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (2023.12.25)
+Collecting antlr4-python3-runtime==4.9.* (from omegaconf&lt;2.3.0,&gt;=2.1.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading antlr4-python3-runtime-4.9.3.tar.gz (117 kB)
+     <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">117.0/117.0 kB</span><span> </span><span style="color: var(--ansi-red);">157.1 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>  Preparing metadata (setup.py) ... done
+Collecting colorama (from openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting model-index (from openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading model_index-0.1.11-py3-none-any.whl.metadata (3.9 kB)
+Collecting opendatalab (from openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading opendatalab-0.0.10-py3-none-any.whl.metadata (6.4 kB)
+Requirement already satisfied: rich in /usr/local/lib/python3.10/dist-packages (from openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (13.7.1)
+Requirement already satisfied: tabulate in /usr/local/lib/python3.10/dist-packages (from openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (0.9.0)
+Collecting coloredlogs (from optimum&lt;1.19,&gt;=1.17-&gt;optimum[onnxruntime]&lt;1.19,&gt;=1.17; extra == "all"-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon)
+  Downloading coloredlogs-15.0.1-py2.py3-none-any.whl.metadata (12 kB)
+Requirement already satisfied: sympy in /usr/local/lib/python3.10/dist-packages (from optimum&lt;1.19,&gt;=1.17-&gt;optimum[onnxruntime]&lt;1.19,&gt;=1.17; extra == "all"-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (1.12)
+Collecting onnx (from optimum[onnxruntime]&lt;1.19,&gt;=1.17; extra == "all"-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon)
+  Downloading onnx-1.16.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (16 kB)
+Collecting onnxruntime&gt;=1.11.0 (from optimum[onnxruntime]&lt;1.19,&gt;=1.17; extra == "all"-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon)
+  Downloading onnxruntime-1.17.3-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (4.4 kB)
+Requirement already satisfied: protobuf&gt;=3.20.1 in /usr/local/lib/python3.10/dist-packages (from optimum[onnxruntime]&lt;1.19,&gt;=1.17; extra == "all"-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (3.20.3)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/python3.10/dist-packages (from pandas&lt;2.3.0,&gt;=2.0.0-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.10/dist-packages (from pandas&lt;2.3.0,&gt;=2.0.0-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (2023.4)
+Requirement already satisfied: tzdata&gt;=2022.1 in /usr/local/lib/python3.10/dist-packages (from pandas&lt;2.3.0,&gt;=2.0.0-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (2024.1)
+Requirement already satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from ray&lt;2.11,&gt;=2.10.0-&gt;ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (3.14.0)
+Requirement already satisfied: msgpack&lt;2.0.0,&gt;=1.0.0 in /usr/local/lib/python3.10/dist-packages (from ray&lt;2.11,&gt;=2.10.0-&gt;ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (1.0.8)
+Requirement already satisfied: aiosignal in /usr/local/lib/python3.10/dist-packages (from ray&lt;2.11,&gt;=2.10.0-&gt;ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (1.3.1)
+Requirement already satisfied: frozenlist in /usr/local/lib/python3.10/dist-packages (from ray&lt;2.11,&gt;=2.10.0-&gt;ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (1.4.1)
+Collecting tensorboardX&gt;=1.9 (from ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading tensorboardX-2.6.2.2-py2.py3-none-any.whl.metadata (5.8 kB)
+Requirement already satisfied: pyarrow&gt;=6.0.1 in /usr/local/lib/python3.10/dist-packages (from ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (14.0.2)
+Requirement already satisfied: aiohttp&gt;=3.7 in /usr/local/lib/python3.10/dist-packages (from ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (3.9.5)
+Collecting aiohttp-cors (from ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading aiohttp_cors-0.7.0-py3-none-any.whl.metadata (20 kB)
+Collecting colorful (from ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading colorful-0.5.6-py2.py3-none-any.whl.metadata (16 kB)
+Collecting py-spy&gt;=0.2.0 (from ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading py_spy-0.3.14-py2.py3-none-manylinux_2_5_x86_64.manylinux1_x86_64.whl.metadata (16 kB)
+Collecting opencensus (from ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading opencensus-0.11.4-py2.py3-none-any.whl.metadata (12 kB)
+Requirement already satisfied: prometheus-client&gt;=0.7.1 in /usr/local/lib/python3.10/dist-packages (from ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (0.20.0)
+Requirement already satisfied: smart-open in /usr/local/lib/python3.10/dist-packages (from ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (6.4.0)
+Collecting virtualenv!=20.21.1,&gt;=20.0.24 (from ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading virtualenv-20.26.1-py3-none-any.whl.metadata (4.4 kB)
+Requirement already satisfied: grpcio&gt;=1.42.0 in /usr/local/lib/python3.10/dist-packages (from ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (1.63.0)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (3.3.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (3.7)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (2.0.7)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (2024.2.2)
+Requirement already satisfied: imageio&gt;=2.4.1 in /usr/local/lib/python3.10/dist-packages (from scikit-image&lt;0.21.0,&gt;=0.19.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (2.31.6)
+Requirement already satisfied: tifffile&gt;=2019.7.26 in /usr/local/lib/python3.10/dist-packages (from scikit-image&lt;0.21.0,&gt;=0.19.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (2024.4.24)
+Requirement already satisfied: PyWavelets&gt;=1.1.1 in /usr/local/lib/python3.10/dist-packages (from scikit-image&lt;0.21.0,&gt;=0.19.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (1.6.0)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from scikit-learn&lt;1.4.1,&gt;=1.3.0-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (3.5.0)
+Requirement already satisfied: statsmodels&gt;=0.13.2 in /usr/local/lib/python3.10/dist-packages (from statsforecast&lt;1.5,&gt;=1.4.0-&gt;autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (0.14.2)
+Requirement already satisfied: absl-py&gt;=0.4 in /usr/local/lib/python3.10/dist-packages (from tensorboard&lt;3,&gt;=2.9-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (1.4.0)
+Requirement already satisfied: google-auth&lt;3,&gt;=1.6.3 in /usr/local/lib/python3.10/dist-packages (from tensorboard&lt;3,&gt;=2.9-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (2.27.0)
+Requirement already satisfied: google-auth-oauthlib&lt;2,&gt;=0.5 in /usr/local/lib/python3.10/dist-packages (from tensorboard&lt;3,&gt;=2.9-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (1.2.0)
+Requirement already satisfied: markdown&gt;=2.6.8 in /usr/local/lib/python3.10/dist-packages (from tensorboard&lt;3,&gt;=2.9-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (3.6)
+Requirement already satisfied: tensorboard-data-server&lt;0.8.0,&gt;=0.7.0 in /usr/local/lib/python3.10/dist-packages (from tensorboard&lt;3,&gt;=2.9-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (0.7.2)
+Requirement already satisfied: werkzeug&gt;=1.0.1 in /usr/local/lib/python3.10/dist-packages (from tensorboard&lt;3,&gt;=2.9-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (3.0.2)
+Requirement already satisfied: safetensors in /usr/local/lib/python3.10/dist-packages (from timm&lt;0.10.0,&gt;=0.9.5-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (0.4.3)
+Collecting nvidia-cuda-nvrtc-cu12==12.1.105 (from torch&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-runtime-cu12==12.1.105 (from torch&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nvidia_cuda_runtime_cu12-12.1.105-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-cupti-cu12==12.1.105 (from torch&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nvidia_cuda_cupti_cu12-12.1.105-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cudnn-cu12==8.9.2.26 (from torch&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nvidia_cudnn_cu12-8.9.2.26-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cublas-cu12==12.1.3.1 (from torch&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nvidia_cublas_cu12-12.1.3.1-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cufft-cu12==11.0.2.54 (from torch&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nvidia_cufft_cu12-11.0.2.54-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-curand-cu12==10.3.2.106 (from torch&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nvidia_curand_cu12-10.3.2.106-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cusolver-cu12==11.4.5.107 (from torch&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparse-cu12==12.1.0.106 (from torch&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-nccl-cu12==2.18.1 (from torch&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nvidia_nccl_cu12-2.18.1-py3-none-manylinux1_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-nvtx-cu12==12.1.105 (from torch&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl.metadata (1.7 kB)
+Collecting triton==2.1.0 (from torch&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading triton-2.1.0-0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.3 kB)
+Collecting nvidia-nvjitlink-cu12 (from nvidia-cusolver-cu12==11.4.5.107-&gt;torch&lt;2.2,&gt;=2.1-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting tokenizers&lt;0.19,&gt;=0.14 (from transformers&lt;4.39.0,&gt;=4.38.0-&gt;transformers[sentencepiece]&lt;4.39.0,&gt;=4.38.0-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading tokenizers-0.15.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+Requirement already satisfied: sentencepiece!=0.1.92,&gt;=0.1.91 in /usr/local/lib/python3.10/dist-packages (from transformers[sentencepiece]&lt;4.39.0,&gt;=4.38.0-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (0.1.99)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (1.2.1)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.10/dist-packages (from matplotlib-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (4.51.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (1.4.5)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (3.1.2)
+Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /usr/local/lib/python3.10/dist-packages (from aiohttp&gt;=3.7-&gt;ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (6.0.5)
+Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp&gt;=3.7-&gt;ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (1.9.4)
+Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp&gt;=3.7-&gt;ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (4.0.3)
+Requirement already satisfied: pyarrow-hotfix in /usr/local/lib/python3.10/dist-packages (from datasets&gt;=2.0.0-&gt;evaluate&lt;0.5.0,&gt;=0.4.0-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (0.6)
+Collecting huggingface-hub&gt;=0.7.0 (from evaluate&lt;0.5.0,&gt;=0.4.0-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading huggingface_hub-0.23.0-py3-none-any.whl.metadata (12 kB)
+Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.10/dist-packages (from gdown&gt;=4.0.0-&gt;nlpaug&lt;1.2.0,&gt;=1.1.10-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (4.12.3)
+Requirement already satisfied: cachetools&lt;6.0,&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard&lt;3,&gt;=2.9-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (5.3.3)
+Requirement already satisfied: pyasn1-modules&gt;=0.2.1 in /usr/local/lib/python3.10/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard&lt;3,&gt;=2.9-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (0.4.0)
+Requirement already satisfied: rsa&lt;5,&gt;=3.1.4 in /usr/local/lib/python3.10/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard&lt;3,&gt;=2.9-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (4.9)
+Requirement already satisfied: requests-oauthlib&gt;=0.7.0 in /usr/local/lib/python3.10/dist-packages (from google-auth-oauthlib&lt;2,&gt;=0.5-&gt;tensorboard&lt;3,&gt;=2.9-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (1.3.1)
+Collecting Pillow&lt;11,&gt;=10.0.1 (from autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading Pillow-10.0.1-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (9.5 kB)
+Requirement already satisfied: llvmlite&lt;0.42,&gt;=0.41.0dev0 in /usr/local/lib/python3.10/dist-packages (from numba-&gt;mlforecast&lt;0.10.1,&gt;=0.10.0-&gt;autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (0.41.1)
+Requirement already satisfied: flatbuffers in /usr/local/lib/python3.10/dist-packages (from onnxruntime&gt;=1.11.0-&gt;optimum[onnxruntime]&lt;1.19,&gt;=1.17; extra == "all"-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (24.3.25)
+Requirement already satisfied: annotated-types&gt;=0.4.0 in /usr/local/lib/python3.10/dist-packages (from pydantic&lt;3,&gt;=1.7-&gt;gluonts&lt;0.14.4,&gt;=0.14.0-&gt;autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (0.6.0)
+Requirement already satisfied: pydantic-core==2.18.2 in /usr/local/lib/python3.10/dist-packages (from pydantic&lt;3,&gt;=1.7-&gt;gluonts&lt;0.14.4,&gt;=0.14.0-&gt;autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (2.18.2)
+Requirement already satisfied: spacy-legacy&lt;3.1.0,&gt;=3.0.11 in /usr/local/lib/python3.10/dist-packages (from spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (3.0.12)
+Requirement already satisfied: spacy-loggers&lt;2.0.0,&gt;=1.0.0 in /usr/local/lib/python3.10/dist-packages (from spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (1.0.5)
+Requirement already satisfied: murmurhash&lt;1.1.0,&gt;=0.28.0 in /usr/local/lib/python3.10/dist-packages (from spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (1.0.10)
+Requirement already satisfied: cymem&lt;2.1.0,&gt;=2.0.2 in /usr/local/lib/python3.10/dist-packages (from spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (2.0.8)
+Requirement already satisfied: preshed&lt;3.1.0,&gt;=3.0.2 in /usr/local/lib/python3.10/dist-packages (from spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (3.0.9)
+Requirement already satisfied: thinc&lt;8.3.0,&gt;=8.2.2 in /usr/local/lib/python3.10/dist-packages (from spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (8.2.3)
+Requirement already satisfied: wasabi&lt;1.2.0,&gt;=0.9.1 in /usr/local/lib/python3.10/dist-packages (from spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (1.1.2)
+Requirement already satisfied: srsly&lt;3.0.0,&gt;=2.4.3 in /usr/local/lib/python3.10/dist-packages (from spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (2.4.8)
+Requirement already satisfied: catalogue&lt;2.1.0,&gt;=2.0.6 in /usr/local/lib/python3.10/dist-packages (from spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (2.0.10)
+Requirement already satisfied: weasel&lt;0.4.0,&gt;=0.1.0 in /usr/local/lib/python3.10/dist-packages (from spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (0.3.4)
+Requirement already satisfied: typer&lt;0.10.0,&gt;=0.3.0 in /usr/local/lib/python3.10/dist-packages (from spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (0.9.4)
+Requirement already satisfied: langcodes&lt;4.0.0,&gt;=3.2.0 in /usr/local/lib/python3.10/dist-packages (from spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (3.4.0)
+Requirement already satisfied: patsy&gt;=0.5.6 in /usr/local/lib/python3.10/dist-packages (from statsmodels&gt;=0.13.2-&gt;statsforecast&lt;1.5,&gt;=1.4.0-&gt;autogluon.timeseries==1.1.0-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (0.5.6)
+Collecting distlib&lt;1,&gt;=0.3.7 (from virtualenv!=20.21.1,&gt;=20.0.24-&gt;ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading distlib-0.3.8-py2.py3-none-any.whl.metadata (5.1 kB)
+Requirement already satisfied: platformdirs&lt;5,&gt;=3.9.1 in /usr/local/lib/python3.10/dist-packages (from virtualenv!=20.21.1,&gt;=20.0.24-&gt;ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (4.2.1)
+Collecting humanfriendly&gt;=9.1 (from coloredlogs-&gt;optimum&lt;1.19,&gt;=1.17-&gt;optimum[onnxruntime]&lt;1.19,&gt;=1.17; extra == "all"-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon)
+  Downloading humanfriendly-10.0-py2.py3-none-any.whl.metadata (9.2 kB)
+Collecting ordered-set (from model-index-&gt;openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading ordered_set-4.1.0-py3-none-any.whl.metadata (5.3 kB)
+Collecting opencensus-context&gt;=0.1.3 (from opencensus-&gt;ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading opencensus_context-0.1.3-py2.py3-none-any.whl.metadata (3.3 kB)
+Requirement already satisfied: google-api-core&lt;3.0.0,&gt;=1.0.0 in /usr/local/lib/python3.10/dist-packages (from opencensus-&gt;ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (2.11.1)
+Collecting pycryptodome (from opendatalab-&gt;openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading pycryptodome-3.20.0-cp35-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.4 kB)
+Collecting openxlab (from opendatalab-&gt;openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading openxlab-0.0.38-py3-none-any.whl.metadata (3.8 kB)
+Requirement already satisfied: tenacity&gt;=6.2.0 in /usr/local/lib/python3.10/dist-packages (from plotly-&gt;catboost&lt;1.3,&gt;=1.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (8.2.3)
+Requirement already satisfied: markdown-it-py&gt;=2.2.0 in /usr/local/lib/python3.10/dist-packages (from rich-&gt;openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (3.0.0)
+Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.13.0 in /usr/local/lib/python3.10/dist-packages (from rich-&gt;openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (2.16.1)
+Requirement already satisfied: mpmath&gt;=0.19 in /usr/local/lib/python3.10/dist-packages (from sympy-&gt;optimum&lt;1.19,&gt;=1.17-&gt;optimum[onnxruntime]&lt;1.19,&gt;=1.17; extra == "all"-&gt;autogluon.timeseries[all]==1.1.0-&gt;autogluon) (1.3.0)
+Requirement already satisfied: googleapis-common-protos&lt;2.0.dev0,&gt;=1.56.2 in /usr/local/lib/python3.10/dist-packages (from google-api-core&lt;3.0.0,&gt;=1.0.0-&gt;opencensus-&gt;ray[default,tune]&lt;2.11,&gt;=2.10.0; extra == "all"-&gt;autogluon.core[all]==1.1.0-&gt;autogluon) (1.63.0)
+Requirement already satisfied: language-data&gt;=1.2 in /usr/local/lib/python3.10/dist-packages (from langcodes&lt;4.0.0,&gt;=3.2.0-&gt;spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (1.2.0)
+Requirement already satisfied: mdurl~=0.1 in /usr/local/lib/python3.10/dist-packages (from markdown-it-py&gt;=2.2.0-&gt;rich-&gt;openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (0.1.2)
+Requirement already satisfied: pyasn1&lt;0.7.0,&gt;=0.4.6 in /usr/local/lib/python3.10/dist-packages (from pyasn1-modules&gt;=0.2.1-&gt;google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard&lt;3,&gt;=2.9-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (0.6.0)
+Requirement already satisfied: oauthlib&gt;=3.0.0 in /usr/local/lib/python3.10/dist-packages (from requests-oauthlib&gt;=0.7.0-&gt;google-auth-oauthlib&lt;2,&gt;=0.5-&gt;tensorboard&lt;3,&gt;=2.9-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (3.2.2)
+Requirement already satisfied: blis&lt;0.8.0,&gt;=0.7.8 in /usr/local/lib/python3.10/dist-packages (from thinc&lt;8.3.0,&gt;=8.2.2-&gt;spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (0.7.11)
+Requirement already satisfied: confection&lt;1.0.0,&gt;=0.0.1 in /usr/local/lib/python3.10/dist-packages (from thinc&lt;8.3.0,&gt;=8.2.2-&gt;spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (0.1.4)
+Requirement already satisfied: cloudpathlib&lt;0.17.0,&gt;=0.7.0 in /usr/local/lib/python3.10/dist-packages (from weasel&lt;0.4.0,&gt;=0.1.0-&gt;spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (0.16.0)
+Requirement already satisfied: soupsieve&gt;1.2 in /usr/local/lib/python3.10/dist-packages (from beautifulsoup4-&gt;gdown&gt;=4.0.0-&gt;nlpaug&lt;1.2.0,&gt;=1.1.10-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (2.5)
+Collecting oss2~=2.17.0 (from openxlab-&gt;opendatalab-&gt;openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading oss2-2.17.0.tar.gz (259 kB)
+     <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">259.5/259.5 kB</span><span> </span><span style="color: var(--ansi-red);">33.3 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>  Preparing metadata (setup.py) ... done
+Collecting requests (from autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading requests-2.28.2-py3-none-any.whl.metadata (4.6 kB)
+Collecting rich (from openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading rich-13.4.2-py3-none-any.whl.metadata (18 kB)
+Collecting setuptools (from autogluon.common==1.1.0-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading setuptools-60.2.0-py3-none-any.whl.metadata (5.1 kB)
+Collecting tqdm&lt;5,&gt;=4.38 (from autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading tqdm-4.65.2-py3-none-any.whl.metadata (56 kB)
+     <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">57.0/57.0 kB</span><span> </span><span style="color: var(--ansi-red);">84.3 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Collecting urllib3!=2.2.0,&lt;3,&gt;=1.25.4 (from botocore&lt;1.35.0,&gt;=1.34.101-&gt;boto3&lt;2,&gt;=1.10-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading urllib3-1.26.18-py2.py3-none-any.whl.metadata (48 kB)
+     <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">48.9/48.9 kB</span><span> </span><span style="color: var(--ansi-red);">195.7 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>INFO: pip is looking at multiple versions of requests[socks] to determine which version is compatible with other requirements. This could take a while.
+Collecting requests[socks] (from gdown&gt;=4.0.0-&gt;nlpaug&lt;1.2.0,&gt;=1.1.10-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading requests-2.30.0-py3-none-any.whl.metadata (4.6 kB)
+  Downloading requests-2.29.0-py3-none-any.whl.metadata (4.6 kB)
+Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;gdown&gt;=4.0.0-&gt;nlpaug&lt;1.2.0,&gt;=1.1.10-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (1.7.1)
+Requirement already satisfied: marisa-trie&gt;=0.7.7 in /usr/local/lib/python3.10/dist-packages (from language-data&gt;=1.2-&gt;langcodes&lt;4.0.0,&gt;=3.2.0-&gt;spacy&lt;4-&gt;fastai&lt;2.8,&gt;=2.3.1-&gt;autogluon.tabular[all]==1.1.0-&gt;autogluon) (1.1.0)
+Collecting crcmod&gt;=1.7 (from oss2~=2.17.0-&gt;openxlab-&gt;opendatalab-&gt;openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading crcmod-1.7.tar.gz (89 kB)
+     <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">89.7/89.7 kB</span><span> </span><span style="color: var(--ansi-red);">233.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>  Preparing metadata (setup.py) ... done
+Collecting aliyun-python-sdk-kms&gt;=2.4.1 (from oss2~=2.17.0-&gt;openxlab-&gt;opendatalab-&gt;openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading aliyun_python_sdk_kms-2.16.3-py2.py3-none-any.whl.metadata (1.5 kB)
+Collecting aliyun-python-sdk-core&gt;=2.13.12 (from oss2~=2.17.0-&gt;openxlab-&gt;opendatalab-&gt;openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon)
+  Downloading aliyun-python-sdk-core-2.15.1.tar.gz (443 kB)
+     <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">443.1/443.1 kB</span><span> </span><span style="color: var(--ansi-red);">283.8 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>  Preparing metadata (setup.py) ... done
+Collecting jmespath&lt;2.0.0,&gt;=0.7.1 (from boto3&lt;2,&gt;=1.10-&gt;autogluon.core==1.1.0-&gt;autogluon.core[all]==1.1.0-&gt;autogluon)
+  Downloading jmespath-0.10.0-py2.py3-none-any.whl.metadata (8.0 kB)
+Requirement already satisfied: cryptography&gt;=2.6.0 in /usr/local/lib/python3.10/dist-packages (from aliyun-python-sdk-core&gt;=2.13.12-&gt;oss2~=2.17.0-&gt;openxlab-&gt;opendatalab-&gt;openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (42.0.5)
+Requirement already satisfied: cffi&gt;=1.12 in /usr/local/lib/python3.10/dist-packages (from cryptography&gt;=2.6.0-&gt;aliyun-python-sdk-core&gt;=2.13.12-&gt;oss2~=2.17.0-&gt;openxlab-&gt;opendatalab-&gt;openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (1.16.0)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.10/dist-packages (from cffi&gt;=1.12-&gt;cryptography&gt;=2.6.0-&gt;aliyun-python-sdk-core&gt;=2.13.12-&gt;oss2~=2.17.0-&gt;openxlab-&gt;opendatalab-&gt;openmim&lt;0.4.0,&gt;=0.3.7-&gt;autogluon.multimodal==1.1.0-&gt;autogluon) (2.22)
+Downloading autogluon-1.1.0-py3-none-any.whl (9.7 kB)
+Downloading autogluon.core-1.1.0-py3-none-any.whl (232 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">232.6/232.6 kB</span><span> </span><span style="color: var(--ansi-red);">264.6 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading autogluon.features-1.1.0-py3-none-any.whl (63 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">63.0/63.0 kB</span><span> </span><span style="color: var(--ansi-red);">134.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading autogluon.multimodal-1.1.0-py3-none-any.whl (427 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">427.5/427.5 kB</span><span> </span><span style="color: var(--ansi-red);">275.7 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading autogluon.tabular-1.1.0-py3-none-any.whl (308 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">308.5/308.5 kB</span><span> </span><span style="color: var(--ansi-red);">188.6 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading autogluon.timeseries-1.1.0-py3-none-any.whl (147 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">147.1/147.1 kB</span><span> </span><span style="color: var(--ansi-red);">255.7 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading autogluon.common-1.1.0-py3-none-any.whl (64 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">64.3/64.3 kB</span><span> </span><span style="color: var(--ansi-red);">218.4 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading accelerate-0.21.0-py3-none-any.whl (244 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">244.2/244.2 kB</span><span> </span><span style="color: var(--ansi-red);">261.4 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading boto3-1.34.101-py3-none-any.whl (139 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">139.3/139.3 kB</span><span> </span><span style="color: var(--ansi-red);">240.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading catboost-1.2.5-cp310-cp310-manylinux2014_x86_64.whl (98.2 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">98.2/98.2 MB</span><span> </span><span style="color: var(--ansi-red);">205.2 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading evaluate-0.4.2-py3-none-any.whl (84 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">84.1/84.1 kB</span><span> </span><span style="color: var(--ansi-red);">239.9 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading gluonts-0.14.3-py3-none-any.whl (1.5 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">1.5/1.5 MB</span><span> </span><span style="color: var(--ansi-red);">231.5 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading lightning-2.1.4-py3-none-any.whl (2.0 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">2.0/2.0 MB</span><span> </span><span style="color: var(--ansi-red);">319.1 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading mlforecast-0.10.0-py3-none-any.whl (47 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">47.6/47.6 kB</span><span> </span><span style="color: var(--ansi-red);">162.5 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading nlpaug-1.1.11-py3-none-any.whl (410 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">410.5/410.5 kB</span><span> </span><span style="color: var(--ansi-red);">202.8 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading nptyping-2.4.1-py3-none-any.whl (36 kB)
+Downloading omegaconf-2.2.3-py3-none-any.whl (79 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">79.3/79.3 kB</span><span> </span><span style="color: var(--ansi-red);">232.7 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading openmim-0.3.9-py2.py3-none-any.whl (52 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">52.7/52.7 kB</span><span> </span><span style="color: var(--ansi-red);">201.8 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading optimum-1.18.1-py3-none-any.whl (410 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">410.0/410.0 kB</span><span> </span><span style="color: var(--ansi-red);">281.4 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading orjson-3.10.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (142 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">142.5/142.5 kB</span><span> </span><span style="color: var(--ansi-red);">267.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading pdf2image-1.17.0-py3-none-any.whl (11 kB)
+Downloading pytesseract-0.3.10-py3-none-any.whl (14 kB)
+Downloading pytorch_lightning-2.1.4-py3-none-any.whl (778 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">778.1/778.1 kB</span><span> </span><span style="color: var(--ansi-red);">145.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading pytorch_metric_learning-2.3.0-py3-none-any.whl (115 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">115.3/115.3 kB</span><span> </span><span style="color: var(--ansi-red);">235.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading ray-2.10.0-cp310-cp310-manylinux2014_x86_64.whl (65.1 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">65.1/65.1 MB</span><span> </span><span style="color: var(--ansi-red);">180.4 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading scikit_learn-1.4.0-1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.1 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">12.1/12.1 MB</span><span> </span><span style="color: var(--ansi-red);">196.1 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading statsforecast-1.4.0-py3-none-any.whl (91 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">92.0/92.0 kB</span><span> </span><span style="color: var(--ansi-red);">212.7 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading timm-0.9.16-py3-none-any.whl (2.2 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">2.2/2.2 MB</span><span> </span><span style="color: var(--ansi-red);">55.6 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading torch-2.1.2-cp310-cp310-manylinux1_x86_64.whl (670.2 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">670.2/670.2 MB</span><span> </span><span style="color: var(--ansi-red);">124.8 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading nvidia_cublas_cu12-12.1.3.1-py3-none-manylinux1_x86_64.whl (410.6 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">410.6/410.6 MB</span><span> </span><span style="color: var(--ansi-red);">156.9 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading nvidia_cuda_cupti_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (14.1 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">14.1/14.1 MB</span><span> </span><span style="color: var(--ansi-red);">160.7 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (23.7 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">23.7/23.7 MB</span><span> </span><span style="color: var(--ansi-red);">244.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading nvidia_cuda_runtime_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (823 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">823.6/823.6 kB</span><span> </span><span style="color: var(--ansi-red);">242.7 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading nvidia_cudnn_cu12-8.9.2.26-py3-none-manylinux1_x86_64.whl (731.7 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">731.7/731.7 MB</span><span> </span><span style="color: var(--ansi-red);">114.4 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading nvidia_cufft_cu12-11.0.2.54-py3-none-manylinux1_x86_64.whl (121.6 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">121.6/121.6 MB</span><span> </span><span style="color: var(--ansi-red);">176.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading nvidia_curand_cu12-10.3.2.106-py3-none-manylinux1_x86_64.whl (56.5 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">56.5/56.5 MB</span><span> </span><span style="color: var(--ansi-red);">173.2 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl (124.2 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">124.2/124.2 MB</span><span> </span><span style="color: var(--ansi-red);">178.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl (196.0 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">196.0/196.0 MB</span><span> </span><span style="color: var(--ansi-red);">137.6 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading nvidia_nccl_cu12-2.18.1-py3-none-manylinux1_x86_64.whl (209.8 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">209.8/209.8 MB</span><span> </span><span style="color: var(--ansi-red);">153.7 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (99 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">99.1/99.1 kB</span><span> </span><span style="color: var(--ansi-red);">220.8 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading triton-2.1.0-0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (89.2 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">89.2/89.2 MB</span><span> </span><span style="color: var(--ansi-red);">189.6 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading torchmetrics-1.2.1-py3-none-any.whl (806 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">806.1/806.1 kB</span><span> </span><span style="color: var(--ansi-red);">145.5 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading torchvision-0.16.2-cp310-cp310-manylinux1_x86_64.whl (6.8 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">6.8/6.8 MB</span><span> </span><span style="color: var(--ansi-red);">219.6 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading transformers-4.38.2-py3-none-any.whl (8.5 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">8.5/8.5 MB</span><span> </span><span style="color: var(--ansi-red);">209.2 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading utilsforecast-0.0.10-py3-none-any.whl (30 kB)
+Downloading botocore-1.34.101-py3-none-any.whl (12.2 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">12.2/12.2 MB</span><span> </span><span style="color: var(--ansi-red);">214.4 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading datasets-2.19.1-py3-none-any.whl (542 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">542.0/542.0 kB</span><span> </span><span style="color: var(--ansi-red);">212.3 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading dill-0.3.8-py3-none-any.whl (116 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">116.3/116.3 kB</span><span> </span><span style="color: var(--ansi-red);">217.8 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading huggingface_hub-0.23.0-py3-none-any.whl (401 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">401.2/401.2 kB</span><span> </span><span style="color: var(--ansi-red);">117.4 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading Pillow-10.0.1-cp310-cp310-manylinux_2_28_x86_64.whl (3.6 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">3.6/3.6 MB</span><span> </span><span style="color: var(--ansi-red);">247.8 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading lightning_utilities-0.11.2-py3-none-any.whl (26 kB)
+Downloading onnxruntime-1.17.3-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.8 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">6.8/6.8 MB</span><span> </span><span style="color: var(--ansi-red);">152.8 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading py_spy-0.3.14-py2.py3-none-manylinux_2_5_x86_64.manylinux1_x86_64.whl (3.0 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">3.0/3.0 MB</span><span> </span><span style="color: var(--ansi-red);">251.5 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading s3transfer-0.10.1-py3-none-any.whl (82 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">82.2/82.2 kB</span><span> </span><span style="color: var(--ansi-red);">235.7 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading tensorboardX-2.6.2.2-py2.py3-none-any.whl (101 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">101.7/101.7 kB</span><span> </span><span style="color: var(--ansi-red);">247.6 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading tokenizers-0.15.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.6 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">3.6/3.6 MB</span><span> </span><span style="color: var(--ansi-red);">165.3 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading virtualenv-20.26.1-py3-none-any.whl (3.9 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">3.9/3.9 MB</span><span> </span><span style="color: var(--ansi-red);">275.1 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading aiohttp_cors-0.7.0-py3-none-any.whl (27 kB)
+Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Downloading coloredlogs-15.0.1-py2.py3-none-any.whl (46 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">46.0/46.0 kB</span><span> </span><span style="color: var(--ansi-red);">171.5 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading colorful-0.5.6-py2.py3-none-any.whl (201 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">201.4/201.4 kB</span><span> </span><span style="color: var(--ansi-red);">251.9 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading model_index-0.1.11-py3-none-any.whl (34 kB)
+Downloading multiprocess-0.70.16-py310-none-any.whl (134 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">134.8/134.8 kB</span><span> </span><span style="color: var(--ansi-red);">234.9 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading onnx-1.16.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (15.9 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">15.9/15.9 MB</span><span> </span><span style="color: var(--ansi-red);">182.9 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading opencensus-0.11.4-py2.py3-none-any.whl (128 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">128.2/128.2 kB</span><span> </span><span style="color: var(--ansi-red);">222.2 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading opendatalab-0.0.10-py3-none-any.whl (29 kB)
+Downloading window_ops-0.0.15-py3-none-any.whl (15 kB)
+Downloading xxhash-3.4.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (194 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">194.1/194.1 kB</span><span> </span><span style="color: var(--ansi-red);">246.5 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading distlib-0.3.8-py2.py3-none-any.whl (468 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">468.9/468.9 kB</span><span> </span><span style="color: var(--ansi-red);">287.7 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading humanfriendly-10.0-py2.py3-none-any.whl (86 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">86.8/86.8 kB</span><span> </span><span style="color: var(--ansi-red);">91.4 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading opencensus_context-0.1.3-py2.py3-none-any.whl (5.1 kB)
+Downloading nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (21.1 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">21.1/21.1 MB</span><span> </span><span style="color: var(--ansi-red);">146.5 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading openxlab-0.0.38-py3-none-any.whl (302 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">302.8/302.8 kB</span><span> </span><span style="color: var(--ansi-red);">276.6 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading requests-2.28.2-py3-none-any.whl (62 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">62.8/62.8 kB</span><span> </span><span style="color: var(--ansi-red);">214.8 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading tqdm-4.65.2-py3-none-any.whl (77 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">77.1/77.1 kB</span><span> </span><span style="color: var(--ansi-red);">228.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading rich-13.4.2-py3-none-any.whl (239 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">239.4/239.4 kB</span><span> </span><span style="color: var(--ansi-red);">291.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading setuptools-60.2.0-py3-none-any.whl (953 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">953.1/953.1 kB</span><span> </span><span style="color: var(--ansi-red);">305.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading urllib3-1.26.18-py2.py3-none-any.whl (143 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">143.8/143.8 kB</span><span> </span><span style="color: var(--ansi-red);">252.2 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading ordered_set-4.1.0-py3-none-any.whl (7.6 kB)
+Downloading pycryptodome-3.20.0-cp35-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">2.1/2.1 MB</span><span> </span><span style="color: var(--ansi-red);">269.2 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Downloading jmespath-0.10.0-py2.py3-none-any.whl (24 kB)
+Downloading aliyun_python_sdk_kms-2.16.3-py2.py3-none-any.whl (98 kB)
+   <span style="color: var(--ansi-bright-black);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span> </span><span style="color: var(--ansi-green);">98.1/98.1 kB</span><span> </span><span style="color: var(--ansi-red);">255.0 MB/s</span><span> eta </span><span style="color: var(--ansi-cyan);">0:00:00</span><span>
+</span>Building wheels for collected packages: nvidia-ml-py3, antlr4-python3-runtime, seqeval, oss2, aliyun-python-sdk-core, crcmod
+  Building wheel for nvidia-ml-py3 (setup.py) ... done
+  Created wheel for nvidia-ml-py3: filename=nvidia_ml_py3-7.352.0-py3-none-any.whl size=19172 sha256=c5c88e72f35b74385f2072811b63f6b34c00867ebeb206fd3977f41d1ba76dfe
+  Stored in directory: /tmp/pip-ephem-wheel-cache-h9etmgxu/wheels/5c/d8/c0/46899f8be7a75a2ffd197a23c8797700ea858b9b34819fbf9e
+  Building wheel for antlr4-python3-runtime (setup.py) ... done
+  Created wheel for antlr4-python3-runtime: filename=antlr4_python3_runtime-4.9.3-py3-none-any.whl size=144554 sha256=c8fa33875776a7cebb83c97e04fb651ce57c1b39009192e14a0701cbc5d2c5e5
+  Stored in directory: /tmp/pip-ephem-wheel-cache-h9etmgxu/wheels/12/93/dd/1f6a127edc45659556564c5730f6d4e300888f4bca2d4c5a88
+  Building wheel for seqeval (setup.py) ... done
+  Created wheel for seqeval: filename=seqeval-1.2.2-py3-none-any.whl size=16161 sha256=12a6478b0a6c6fb037d578e5ca67ac04689ebd5337d997a1dfd4f12afb14388d
+  Stored in directory: /tmp/pip-ephem-wheel-cache-h9etmgxu/wheels/1a/67/4a/ad4082dd7dfc30f2abfe4d80a2ed5926a506eb8a972b4767fa
+  Building wheel for oss2 (setup.py) ... done
+  Created wheel for oss2: filename=oss2-2.17.0-py3-none-any.whl size=112372 sha256=80b4cd4bb5282bf24f645fb68e88140cc0d76a225ebde3a0020f0e227ed63996
+  Stored in directory: /tmp/pip-ephem-wheel-cache-h9etmgxu/wheels/87/04/7b/7e61b8157fdf211c5131375240d0d86ca82e2a88ead9672c88
+  Building wheel for aliyun-python-sdk-core (setup.py) ... done
+  Created wheel for aliyun-python-sdk-core: filename=aliyun_python_sdk_core-2.15.1-py3-none-any.whl size=535325 sha256=ae25d4c43c60c52e99b80616b59dd6816015afe9f88de7905106fd1176eb59e9
+  Stored in directory: /tmp/pip-ephem-wheel-cache-h9etmgxu/wheels/69/4b/8e/0a28e00f4cf43b273c18cce083804738d41013e017da922ce4
+  Building wheel for crcmod (setup.py) ... done
+  Created wheel for crcmod: filename=crcmod-1.7-cp310-cp310-linux_x86_64.whl size=31407 sha256=b6e3f74d60144638b38010b72e60087a21555d7a3afdc9a2b6d4f46ddaa2b286
+  Stored in directory: /tmp/pip-ephem-wheel-cache-h9etmgxu/wheels/85/4c/07/72215c529bd59d67e3dac29711d7aba1b692f543c808ba9e86
+Successfully built nvidia-ml-py3 antlr4-python3-runtime seqeval oss2 aliyun-python-sdk-core crcmod
+Installing collected packages: py-spy, opencensus-context, nvidia-ml-py3, distlib, crcmod, colorful, antlr4-python3-runtime, xxhash, virtualenv, urllib3, triton, tqdm, tensorboardX, setuptools, pycryptodome, Pillow, orjson, ordered-set, onnx, omegaconf, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufft-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, nptyping, jmespath, humanfriendly, dill, colorama, window-ops, scikit-learn, rich, requests, pytesseract, pdf2image, nvidia-cusparse-cu12, nvidia-cudnn-cu12, multiprocess, model-index, lightning-utilities, coloredlogs, botocore, utilsforecast, seqeval, s3transfer, onnxruntime, nvidia-cusolver-cu12, huggingface-hub, gluonts, catboost, aliyun-python-sdk-core, aiohttp-cors, torch, tokenizers, statsforecast, ray, opencensus, mlforecast, datasets, boto3, aliyun-python-sdk-kms, transformers, torchvision, torchmetrics, pytorch-metric-learning, oss2, nlpaug, evaluate, autogluon.common, accelerate, timm, pytorch-lightning, openxlab, autogluon.features, autogluon.core, optimum, opendatalab, lightning, autogluon.tabular, openmim, autogluon.timeseries, autogluon.multimodal, autogluon
+  Attempting uninstall: urllib3
+    Found existing installation: urllib3 2.0.7
+    Uninstalling urllib3-2.0.7:
+      Successfully uninstalled urllib3-2.0.7
+  Attempting uninstall: triton
+    Found existing installation: triton 2.2.0
+    Uninstalling triton-2.2.0:
+      Successfully uninstalled triton-2.2.0
+  Attempting uninstall: tqdm
+    Found existing installation: tqdm 4.66.4
+    Uninstalling tqdm-4.66.4:
+      Successfully uninstalled tqdm-4.66.4
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 69.5.1
+    Uninstalling setuptools-69.5.1:
+      Successfully uninstalled setuptools-69.5.1
+  Attempting uninstall: Pillow
+    Found existing installation: Pillow 9.4.0
+    Uninstalling Pillow-9.4.0:
+      Successfully uninstalled Pillow-9.4.0
+  Attempting uninstall: scikit-learn
+    Found existing installation: scikit-learn 1.2.2
+    Uninstalling scikit-learn-1.2.2:
+      Successfully uninstalled scikit-learn-1.2.2
+  Attempting uninstall: rich
+    Found existing installation: rich 13.7.1
+    Uninstalling rich-13.7.1:
+      Successfully uninstalled rich-13.7.1
+  Attempting uninstall: requests
+    Found existing installation: requests 2.31.0
+    Uninstalling requests-2.31.0:
+      Successfully uninstalled requests-2.31.0
+  Attempting uninstall: huggingface-hub
+    Found existing installation: huggingface-hub 0.20.3
+    Uninstalling huggingface-hub-0.20.3:
+      Successfully uninstalled huggingface-hub-0.20.3
+  Attempting uninstall: torch
+    Found existing installation: torch 2.2.1+cu121
+    Uninstalling torch-2.2.1+cu121:
+      Successfully uninstalled torch-2.2.1+cu121
+  Attempting uninstall: tokenizers
+    Found existing installation: tokenizers 0.19.1
+    Uninstalling tokenizers-0.19.1:
+      Successfully uninstalled tokenizers-0.19.1
+  Attempting uninstall: transformers
+    Found existing installation: transformers 4.40.1
+    Uninstalling transformers-4.40.1:
+      Successfully uninstalled transformers-4.40.1
+  Attempting uninstall: torchvision
+    Found existing installation: torchvision 0.17.1+cu121
+    Uninstalling torchvision-0.17.1+cu121:
+      Successfully uninstalled torchvision-0.17.1+cu121
+<span style="color: var(--ansi-red);">ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+ipython 7.34.0 requires jedi&gt;=0.16, which is not installed.
+cvxpy 1.3.4 requires setuptools&gt;65.5.1, but you have setuptools 60.2.0 which is incompatible.
+google-colab 1.0.0 requires requests==2.31.0, but you have requests 2.28.2 which is incompatible.
+panel 1.3.8 requires bokeh&lt;3.4.0,&gt;=3.2.0, but you have bokeh 2.0.1 which is incompatible.
+torchaudio 2.2.1+cu121 requires torch==2.2.1, but you have torch 2.1.2 which is incompatible.
+torchtext 0.17.1 requires torch==2.2.1, but you have torch 2.1.2 which is incompatible.
+yfinance 0.2.38 requires requests&gt;=2.31, but you have requests 2.28.2 which is incompatible.</span><span style="color: var(--ansi-red);">
+</span><span>Successfully installed Pillow-10.0.1 accelerate-0.21.0 aiohttp-cors-0.7.0 aliyun-python-sdk-core-2.15.1 aliyun-python-sdk-kms-2.16.3 antlr4-python3-runtime-4.9.3 autogluon-1.1.0 autogluon.common-1.1.0 autogluon.core-1.1.0 autogluon.features-1.1.0 autogluon.multimodal-1.1.0 autogluon.tabular-1.1.0 autogluon.timeseries-1.1.0 boto3-1.34.101 botocore-1.34.101 catboost-1.2.5 colorama-0.4.6 coloredlogs-15.0.1 colorful-0.5.6 crcmod-1.7 datasets-2.19.1 dill-0.3.8 distlib-0.3.8 evaluate-0.4.2 gluonts-0.14.3 huggingface-hub-0.23.0 humanfriendly-10.0 jmespath-0.10.0 lightning-2.1.4 lightning-utilities-0.11.2 mlforecast-0.10.0 model-index-0.1.11 multiprocess-0.70.16 nlpaug-1.1.11 nptyping-2.4.1 nvidia-cublas-cu12-12.1.3.1 nvidia-cuda-cupti-cu12-12.1.105 nvidia-cuda-nvrtc-cu12-12.1.105 nvidia-cuda-runtime-cu12-12.1.105 nvidia-cudnn-cu12-8.9.2.26 nvidia-cufft-cu12-11.0.2.54 nvidia-curand-cu12-10.3.2.106 nvidia-cusolver-cu12-11.4.5.107 nvidia-cusparse-cu12-12.1.0.106 nvidia-ml-py3-7.352.0 nvidia-nccl-cu12-2.18.1 nvidia-nvjitlink-cu12-12.4.127 nvidia-nvtx-cu12-12.1.105 omegaconf-2.2.3 onnx-1.16.0 onnxruntime-1.17.3 opencensus-0.11.4 opencensus-context-0.1.3 opendatalab-0.0.10 openmim-0.3.9 openxlab-0.0.38 optimum-1.18.1 ordered-set-4.1.0 orjson-3.10.3 oss2-2.17.0 pdf2image-1.17.0 py-spy-0.3.14 pycryptodome-3.20.0 pytesseract-0.3.10 pytorch-lightning-2.1.4 pytorch-metric-learning-2.3.0 ray-2.10.0 requests-2.28.2 rich-13.4.2 s3transfer-0.10.1 scikit-learn-1.4.0 seqeval-1.2.2 setuptools-60.2.0 statsforecast-1.4.0 tensorboardX-2.6.2.2 timm-0.9.16 tokenizers-0.15.2 torch-2.1.2 torchmetrics-1.2.1 torchvision-0.16.2 tqdm-4.65.2 transformers-4.38.2 triton-2.1.0 urllib3-1.26.18 utilsforecast-0.0.10 virtualenv-20.26.1 window-ops-0.0.15 xxhash-3.4.1
+</span><span style="color: var(--ansi-yellow);">WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: <a rel="nofollow" target="_blank" href="https://pip.pypa.io/warnings/venv">https://pip.pypa.io/warnings/venv</a></span><span style="color: var(--ansi-yellow);">
+</span></pre></div></div><div class="display_data"></div></div><span id="output-footer"></span></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
